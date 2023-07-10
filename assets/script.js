@@ -38,7 +38,15 @@ for (i=0 ; i < slides.length ; i++) {
 	dots.appendChild(dot)
 
 	dot.addEventListener('click', () => {
+		// Supprimer la classe 'dot_selected' de tous les dots
+		const allDots = document.querySelectorAll('.dot')
+		allDots.forEach(dot => {
+		  dot.classList.remove('dot_selected')
+		});
 		// Ajouter la classe 'dot_selected' uniquement au dot cliqué
-		dot.classList.add('dot_selected');
+		dot.classList.add('dot_selected')
+		// Afficher l'image correspondante
+		// Ici, vous devez implémenter le code pour afficher l'image associée au dot sélectionné
+		// Cela dépendra de la logique de votre slider
 })
 }
