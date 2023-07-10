@@ -16,3 +16,14 @@ const slides = [
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
+
+// Je crée des variables sur les selecteurs arrows
+const arrow_left = document.querySelector('.arrow_left')
+const arrow_right = document.querySelector('.arrow_right')
+// Mettre un event listener sur chacune des flèches. 
+arrow_left.addEventListener("click", () => {
+	console.log('vous avez cliqué à gauche')
+})
+arrow_right.addEventListener("click", () => {
+	console.log('vous avez cliqué à droite')
+})
