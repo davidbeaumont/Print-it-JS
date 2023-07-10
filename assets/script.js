@@ -27,3 +27,18 @@ arrow_left.addEventListener("click", () => {
 arrow_right.addEventListener("click", () => {
 	console.log('vous avez cliqué à droite')
 })
+
+//Ajoutez des bullet points au slider
+
+const dots = document.querySelector(".dots")
+
+for (i=0 ; i < slides.length ; i++) {
+	const dot = document.createElement("div")
+	dot.classList.add("dot")
+	dots.appendChild(dot)
+
+	dot.addEventListener('click', () => {
+		// Ajouter la classe 'dot_selected' uniquement au dot cliqué
+		dot.classList.add('dot_selected');
+})
+}
