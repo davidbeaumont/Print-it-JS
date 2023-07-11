@@ -17,29 +17,65 @@ const slides = [
 	}
 ]
 
-// Crée des variables sur les selecteurs arrows
-const arrow_left = document.querySelector('.arrow_left')
-const arrow_right = document.querySelector('.arrow_right')
+// Affiche le slider en javascript
+let currentSlideIndex = 0
 
-// Ajoute un event listener sur chacune des flèches. 
-arrow_left.addEventListener("click", () => {
-	console.log('vous avez cliqué à gauche')
-})
-arrow_right.addEventListener("click", () => {
-	console.log('vous avez cliqué à droite')
-})
+function displaySlide(slideIndex) {
+  const banner = document.getElementById("banner")
+  const bannerImage = banner.querySelector(".banner-img")
+  const tagLine = banner.querySelector("p")
+
+  const slide = slides[slideIndex]
+  bannerImage.src = "./assets/images/slideshow/" + slide.image
+  bannerImage.alt = "Banner Print-it"
+  tagLine.innerHTML = slide.tagLine
+
+  const dots = document.querySelectorAll(".dot")
+  dots.forEach((dot, index) => {
+    if (index === slideIndex) {
+      dot.classList.add('dot_selected')
+    } else {
+      dot.classList.remove('dot_selected')
+    }
+  })
+}
+
+function showNextSlide() {
+	currentSlideIndex++
+	if (currentSlideIndex >= slides.length) {
+	  currentSlideIndex = 0
+	}
+	displaySlide(currentSlideIndex)
+  }
+
+function showPrevSlide() {
+	currentSlideIndex--
+	if (currentSlideIndex < 0) {
+	  currentSlideIndex = slides.length - 1
+	}
+	displaySlide(currentSlideIndex)
+  }
+  
+  // Afficher la première diapositive
+  displaySlide(currentSlideIndex)
+  
+
+// Ajoute un event listener sur chacune des flèches.
+const diapoPrecedente = document.querySelector('.arrow_left')
+const diapoSuivante = document.querySelector('.arrow_right')
+
+diapoPrecedente.addEventListener("click", showPrevSlide)
+diapoSuivante.addEventListener("click", showNextSlide)
 
 //Ajoute des bullet points au slider
 const dots = document.querySelector(".dots")
-const dot_selected = document.querySelector(".dot_selected")
 
 for (i = 0 ; i < slides.length ; i++) {
 	const dot = document.createElement("div")
 	dot.classList.add("dot")
  	// Ajoute la classe 'dot_selected' uniquement au premier dot
 	if (i === 0) {
-		dot.classList.add('dot_selected');
+	dot.classList.add('dot_selected')
 	  }
-
 	dots.appendChild(dot)
 }
