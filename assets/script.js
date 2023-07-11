@@ -17,10 +17,11 @@ const slides = [
 	}
 ]
 
-// Je crée des variables sur les selecteurs arrows
+// Crée des variables sur les selecteurs arrows
 const arrow_left = document.querySelector('.arrow_left')
 const arrow_right = document.querySelector('.arrow_right')
-// Mettre un event listener sur chacune des flèches. 
+
+// Ajoute un event listener sur chacune des flèches. 
 arrow_left.addEventListener("click", () => {
 	console.log('vous avez cliqué à gauche')
 })
@@ -28,25 +29,17 @@ arrow_right.addEventListener("click", () => {
 	console.log('vous avez cliqué à droite')
 })
 
-//Ajoutez des bullet points au slider
-
+//Ajoute des bullet points au slider
 const dots = document.querySelector(".dots")
+const dot_selected = document.querySelector(".dot_selected")
 
-for (i=0 ; i < slides.length ; i++) {
+for (i = 0 ; i < slides.length ; i++) {
 	const dot = document.createElement("div")
 	dot.classList.add("dot")
-	dots.appendChild(dot)
+ 	// Ajoute la classe 'dot_selected' uniquement au premier dot
+	if (i === 0) {
+		dot.classList.add('dot_selected');
+	  }
 
-	dot.addEventListener('click', () => {
-		// Supprimer la classe 'dot_selected' de tous les dots
-		const allDots = document.querySelectorAll('.dot')
-		allDots.forEach(dot => {
-		  dot.classList.remove('dot_selected')
-		});
-		// Ajouter la classe 'dot_selected' uniquement au dot cliqué
-		dot.classList.add('dot_selected')
-		// Afficher l'image correspondante
-		// Ici, vous devez implémenter le code pour afficher l'image associée au dot sélectionné
-		// Cela dépendra de la logique de votre slider
-})
+	dots.appendChild(dot)
 }
