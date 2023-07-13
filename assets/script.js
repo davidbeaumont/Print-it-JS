@@ -16,6 +16,25 @@ const slides = [
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
+// Ajoute un event listener sur chacune des flèches.
+const diapoPrecedente = document.querySelector('.arrow_left')
+const diapoSuivante = document.querySelector('.arrow_right')
+
+diapoPrecedente.addEventListener("click", showPrevSlide)
+diapoSuivante.addEventListener("click", showNextSlide)
+
+//Ajoute des bullet points au slider
+const dots = document.querySelector(".dots")
+
+for (let i in slides) {
+	const dot = document.createElement("div")
+	dot.classList.add("dot")
+ 	// Ajoute la classe 'dot_selected' uniquement au premier dot
+	if (i === 0) {
+	dot.classList.add('dot_selected')
+	  }
+	dots.appendChild(dot)
+}
 
 // Affiche le slider en javascript
 let currentSlideIndex = 0
@@ -30,8 +49,8 @@ function displaySlide(slideIndex) {
   bannerImage.alt = "Banner Print-it"
   tagLine.innerHTML = slide.tagLine
 
-  const dots = document.querySelectorAll(".dot")
-  dots.forEach((dot, index) => {
+  const dotSelected = document.querySelectorAll(".dot")
+  dotSelected.forEach((dot, index) => {
     if (index === slideIndex) {
       dot.classList.add('dot_selected')
     } else {
@@ -56,26 +75,5 @@ function showPrevSlide() {
 	displaySlide(currentSlideIndex)
   }
   
-  // Afficher la première diapositive
-  displaySlide(currentSlideIndex)
-  
-
-// Ajoute un event listener sur chacune des flèches.
-const diapoPrecedente = document.querySelector('.arrow_left')
-const diapoSuivante = document.querySelector('.arrow_right')
-
-diapoPrecedente.addEventListener("click", showPrevSlide)
-diapoSuivante.addEventListener("click", showNextSlide)
-
-//Ajoute des bullet points au slider
-const dots = document.querySelector(".dots")
-
-for (i = 0 ; i < slides.length ; i++) {
-	const dot = document.createElement("div")
-	dot.classList.add("dot")
- 	// Ajoute la classe 'dot_selected' uniquement au premier dot
-	if (i === 0) {
-	dot.classList.add('dot_selected')
-	  }
-	dots.appendChild(dot)
-}
+// Afficher la première diapositive
+displaySlide(currentSlideIndex)
